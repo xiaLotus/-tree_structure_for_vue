@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1741532324420,
+    "label": "456",
+    "checked": true,
+    "children": [
+      {
+        "id": 1741532325827,
+        "label": "456",
+        "checked": true,
+        "children": [
+          {
+            "id": 1741532326348,
+            "label": "456",
+            "checked": true,
+            "children": [
+              {
+                "id": 1741532329886,
+                "label": "新節點 1004",
+                "checked": false,
+                "children": []
+              },
+              {
+                "id": 1741532329644,
+                "label": "456",
+                "checked": true,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 1741532326417,
+            "label": "456",
+            "checked": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 1741532325357,
+        "label": "56",
+        "checked": false,
+        "children": []
+      },
+      {
+        "id": 1741532325328,
+        "label": "31",
+        "checked": true,
+        "children": []
+      }
+    ]
+  }
+]

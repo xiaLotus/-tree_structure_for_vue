@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 無限層級樹狀結構</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6 bg-gray-100">
+
+<div id="app">
+  <div class="mx-auto bg-white">
+
+        <h2 class="text-xl font-bold mb-4">無限層級樹狀結構</h2>
+        
+        <!-- 根節點輸入 -->
+        <div class="flex gap-2 mb-4">
+          <input v-model="newRootLabel" placeholder="輸入根節點名稱" class="w-2/3 border p-2 rounded"/>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded" @click="addRoot">新增根節點</button>
+          <el-button type="success" @click="sendCheckedNodes">傳送狀態</el-button>
+        </div>
+
+        <div class="flex gap-2 mb-4">
+            <el-button type="success" @click="sendCheckedNodes">儲存資料</el-button>
+            <el-button type="info" @click="loadTreeData">載入資料</el-button>
+        </div>
+      
+
+        <!-- 樹狀結構 -->
+        <el-tree
+        ref="treeRef"
+        class="w-full"
+        :data="treeData"
+        show-checkbox
+        node-key="id"
+        default-expand-all
+        :expand-on-click-node="false"
+        :check-strictly="false"
+        @check-change="handleCheckChange"
+    />
+    
+    
+    
+    
+    
+    <template #default="{ node, data }">
+      <div class="flex items-center justify-between w-full py-2 pl-6 pr-6 rounded-lg hover:bg-gray-100">
+          <!-- 左側：checkbox + 可編輯標籤 -->
+          <div class="flex items-center gap-3 w-full">
+              <el-input v-model="data.label" class="text-base flex-grow"/>
+          </div>
+  
+          <!-- 右側：操作按鈕 -->
+          <div class="flex items-center gap-2">
+              <el-button type="primary" link class="text-sm" @click="addChild(data)">
+                  <el-icon><Plus /></el-icon>
+                  <span>新增</span>
+              </el-button>
+              <el-button type="danger" link class="text-sm" @click="removeNode(node, data)">
+                  <el-icon><Delete /></el-icon>
+                  <span>刪除</span>
+              </el-button>
+          </div>
+      </div>
+  </template>
+  
+    
+      
+      
+      
+      
+        </el-tree>
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script src="https://unpkg.com/@element-plus/icons-vue"></script>
+
+<style>
+/* 確保樹狀結構間距統一 */
+.el-tree-node {
+    margin-bottom: 6px; /* 控制節點之間的間距 */
+}
+
+/* 美化行距，讓縮進更自然 */
+.el-tree-node__content {
+    height: 44px !important;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    justify-content: space-between;
+    padding-left: 24px !important; /* 控制縮排 */
+}
+
+/* 增加節點選中時的高亮效果 */
+.el-tree-node__content:hover {
+    background-color: #f3f4f6 !important;
+}
+
+
+/* 確保整個 el-tree 內縮層級 */
+.el-tree .el-tree-node {
+    margin-left: 12px; /* 調整縮排距離 */
+}
+
+
+.el-tree-node__content .el-checkbox {
+    flex-shrink: 0; /* 防止 checkbox 變大 */
+}
+
+.el-tree-node__content .el-input {
+    flex-grow: 1; /* 讓輸入框自動填滿 */
+}
+</style>
+</body>
+</html>
